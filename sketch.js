@@ -19,6 +19,11 @@ function windowResized() {
 function setup() {
 	// noLoop();
 	canvas_resize();
+	let ws = new WebSocket("ws://127.0.0.1:8082");
+	ws.onopen = ()=> {
+		console.log("hello server");
+	}
+	ws.send("hello from client");
 }
 
 function draw() {
