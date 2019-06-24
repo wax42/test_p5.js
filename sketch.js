@@ -14,16 +14,21 @@ function canvas_resize() {
 
 //window resize on viewport change >> hook
 function windowResized() {
-    canvas_resize();
+	canvas_resize();
+	redraw();
 }
 
 function setup() {
-	// noLoop();
+	noLoop();
 	canvas_resize();
 	ws = new WebSocket("ws://127.0.0.1:8082");
 	ws.onopen = ()=> {
 		console.log("hello server");
 		ws.send("hello from client");
+	}
+	ws.onmessage = (e)=>{
+		console.log("received:", e);
+		redraw();
 	}
 }
 
