@@ -1,8 +1,8 @@
 "use strict";
 
 var GetSize = ()=> {
-	return ([Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
-			Math.max(document.documentElement.clientHeight, window.innerHeight || 0)]);
+	return ([Math.max(window.innerWidth || 0),
+			Math.max(window.innerHeight || 0)]);
 }
 
 //canvas resize on viewport change
@@ -18,9 +18,9 @@ function windowResized() {
 
 function setup() {
 	// noLoop();
+	canvas_resize();
 }
 
 function draw() {
-	ellipse(50, 50, 80, 80);
-	text('a', 40, 40);
+	ellipse(GetSize()[0]/2, GetSize()[1]/2, GetSize()[0], GetSize()[1]);
 }
